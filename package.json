@@ -18,7 +18,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "both": "concurrently \"npm start\" \"cd ../backend-inotebook-repo && npx nodemon index.js\""
+    "system": "concurrently \"npm start\" \"cd ../backend-inotebook-repo && npx nodemon index.js\""
   },
   "eslintConfig": {
     "extends": [
