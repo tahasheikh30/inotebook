@@ -39,8 +39,8 @@ function App() {
       <Navbar mode={mode} toggleMode={toggleMode} title="iNotebook" />
       <Alerts alert={alert}/>
       <Routes>
-        <Route path="/" element={<Home mode={mode} toggleMode={toggleMode} showAlert={showAlert} />} />
-        <Route path="/about" element={<About mode={mode} toggleMode={toggleMode} showAlert={showAlert}/>} />
+        <Route exact path="/" element={<Home mode={mode} toggleMode={toggleMode} showAlert={showAlert} />} />
+        <Route exact path="/about" element={<About mode={mode} toggleMode={toggleMode} showAlert={showAlert}/>} />
       </Routes>
       </Router>
     </div>

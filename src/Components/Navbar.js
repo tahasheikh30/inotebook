@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import "../App.css";
 export default function Navbar(props) {
   return (
     <div>
@@ -24,7 +24,7 @@ export default function Navbar(props) {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link className="nav-link active" aria-current="page" to="/">
                   Home
                 </Link>
@@ -33,14 +33,20 @@ export default function Navbar(props) {
                 <Link className="nav-link" to="/about">
                   About
                 </Link>
-              </li>
+              </li> */}
             </ul>
             <form className="d-flex" role="search">
               <input
-                className="form-control me-2"
+                className={`form-control me-2 ${
+                  props.mode === "dark" ? "dark-mode" : ""
+                }`}
                 type="search"
-                placeholder="Search"
+                placeholder="Search note"
                 aria-label="Search"
+                style={{
+                  backgroundColor: props.mode === "dark" ? "#212529" : "white",
+                  color: props.mode === "dark" ? "white" : "black",
+                }}
               />
               <button className="btn btn-outline-success" type="submit">
                 Search
