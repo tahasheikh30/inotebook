@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 
 export default function Navbar(props) {
   const location = useLocation();
+  
   React.useEffect(() => {
     // ga('send', 'pageview');
   }, [location]);
@@ -32,12 +33,12 @@ export default function Navbar(props) {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className={`nav-link ${location.pathname==="/about"? "active": ""}`} aria-current="page" to="/">
+                <Link className={`nav-link ${location.pathname === "/" ? "active" : ""}`} to="/">
                   Home
                 </Link>
               </li>
               <li className="nav-item">
-              <Link className={`nav-link ${location.pathname==="/about"? "active": ""}`} aria-current="page" to="/">
+                <Link className={`nav-link ${location.pathname === "/about" ? "active" : ""}`} to="/about">
                   About
                 </Link>
               </li>
@@ -55,7 +56,12 @@ export default function Navbar(props) {
                   color: props.mode === "dark" ? "white" : "black",
                 }}
               />
-              <button className="btn btn-outline-success" type="submit">
+              <button
+                className={`btn btn-outline-success ${
+                  props.mode === "dark" ? "dark-mode" : ""
+                }`}
+                type="submit"
+              >
                 Search
               </button>
             </form>

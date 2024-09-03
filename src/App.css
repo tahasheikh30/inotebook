@@ -129,3 +129,26 @@ input.dark-mode::placeholder {
 .btn-dark:hover {
   opacity: 0.8;
 }
+
+.btn-outline-success {
+  border: 1px solid #28a745;
+  background-color: white; /* Light mode background */
+  color: #28a745;
+}
+
+.btn-outline-success:hover {
+  background-color: #28a745;
+  color: white;
+}
+
+/* Dark Mode Styles */
+.btn-outline-success.dark-mode {
+  border: 1px solid #28a745;
+  background-color: #212529; /* Dark mode background */
+  color: #28a745;
+}
+
+.btn-outline-success.dark-mode:hover {
+  background-color: #28a745;
+  color: white;
+}
