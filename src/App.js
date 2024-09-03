@@ -1,10 +1,11 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes  } from "react-router-dom";
-import Home from "./Components/Home";
-import About from "./Components/About";
-import Navbar from "./Components/Navbar";
+import Home from "./components/Home";
+import About from "./components/About";
+import Navbar from "./components/Navbar";
 import React, { useState } from "react";
-import Alerts from "./Components/Alerts";
+import Alerts from "./components/Alerts";
+import NoteState from "./context/notes/NoteState";
 
 function App() {
   const [mode, setDarkMode] = useState("light");
@@ -35,14 +36,18 @@ function App() {
 
   return (
     <div>
+      <NoteState>
       <Router>
       <Navbar mode={mode} toggleMode={toggleMode} title="iNotebook" />
       <Alerts alert={alert}/>
+      <div className='container'>
       <Routes>
         <Route exact path="/" element={<Home mode={mode} toggleMode={toggleMode} showAlert={showAlert} />} />
         <Route exact path="/about" element={<About mode={mode} toggleMode={toggleMode} showAlert={showAlert}/>} />
       </Routes>
+      </div>
       </Router>
+      </NoteState>
     </div>
   );
 }

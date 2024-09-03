@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
 
 export default function About(props) {
-  return (
-    <div>About</div>
-  )
+  return(
+  <div>About</div>
+)
 }
