@@ -4,11 +4,13 @@ import noteContext from "../context/notes/noteContext";
 export const Addnote = (props) => {
   const context = useContext(noteContext);
   const { addNote } = context;
-  const [note, setNote] = useState({ title: "", description: "", tag: "", noteText: "" });
+  const [note, setNote] = useState({ title: "", description: "", tag: "", noteText: "", customTag: "" });
+  const [isCustomTag, setIsCustomTag] = useState(false); // New state to track custom tag
 
   const handleAddNote = (event) => {
-    event.preventDefault(); // Prevent page reload
-    addNote(note.title, note.description, note.tag);
+    event.preventDefault();
+    const tagToUse = isCustomTag ? note.customTag : note.tag; // Use custom tag if selected
+    addNote(note.title, note.description, tagToUse);
   };
 
   const onChange = (event) => {
@@ -16,6 +18,16 @@ export const Addnote = (props) => {
       ...note,
       [event.target.name]: event.target.value,
     });
+  };
+
+  const handleTagChange = (event) => {
+    const selectedTag = event.target.value;
+    if (selectedTag === "Custom") {
+      setIsCustomTag(true); // Show custom tag input if "Custom" is selected
+    } else {
+      setIsCustomTag(false);
+    }
+    setNote({ ...note, tag: selectedTag });
   };
 
   return (
@@ -31,6 +43,7 @@ export const Addnote = (props) => {
       >
         <div className="form-container">
           <form>
+            {/* Title */}
             <div className="form-group">
               <label
                 htmlFor="title"
@@ -55,6 +68,7 @@ export const Addnote = (props) => {
               />
             </div>
 
+            {/* Description */}
             <div className="form-group">
               <label
                 htmlFor="description"
@@ -79,6 +93,7 @@ export const Addnote = (props) => {
               />
             </div>
 
+            {/* Tag Dropdown */}
             <div className="form-group">
               <label
                 htmlFor="tag"
@@ -92,7 +107,7 @@ export const Addnote = (props) => {
                 id="tag"
                 name="tag"
                 className="form-select"
-                onChange={onChange}
+                onChange={handleTagChange}
                 value={note.tag}
                 style={{
                   backgroundColor: props.mode === "dark" ? "#212529" : "white",
@@ -105,9 +120,38 @@ export const Addnote = (props) => {
                 <option value="Important">Important</option>
                 <option value="Finance">Finance</option>
                 <option value="Others">Others</option>
+                <option value="Custom">Custom</option> {/* Custom option */}
               </select>
             </div>
 
+            {/* Custom Tag Input (conditionally shown) */}
+            {isCustomTag && (
+              <div className="form-group">
+                <label
+                  htmlFor="customTag"
+                  className={`form-label text-${
+                    props.mode === "light" ? "dark" : "light"
+                  }`}
+                >
+                  Custom Tag
+                </label>
+                <input
+                  type="text"
+                  id="customTag"
+                  name="customTag"
+                  className="form-input"
+                  placeholder="Enter custom tag"
+                  onChange={onChange}
+                  value={note.customTag}
+                  style={{
+                    backgroundColor: props.mode === "dark" ? "#212529" : "white",
+                    color: props.mode === "dark" ? "white" : "black",
+                  }}
+                />
+              </div>
+            )}
+
+            {/* Note Textarea */}
             <div className="form-group">
               <label
                 htmlFor="noteText"
@@ -131,6 +175,7 @@ export const Addnote = (props) => {
               ></textarea>
             </div>
 
+            {/* Submit Button */}
             <button
               type="submit"
               className={`btn btn-${props.mode === "dark" ? "light" : "dark"}`}
