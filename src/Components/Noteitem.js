@@ -4,7 +4,7 @@ import noteContext from "../context/notes/noteContext";
 const Noteitem = (props) => {
   const context = useContext(noteContext);
   const { deleteNote } = context;
-  const { note } = props;
+  const { note, updateNote } = props;
 
   const cardStyle = {
     backgroundColor: props.mode === "dark" ? "#343a40" : "white",
@@ -33,6 +33,7 @@ const Noteitem = (props) => {
             ></i>
             <i
               className="fa-solid fa-pen-to-square"
+              onClick={()=>{updateNote(note)}}
               style={{ color: props.mode === "dark" ? "white" : "black" }}
             ></i>
           </div>

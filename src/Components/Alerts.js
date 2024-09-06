@@ -2,7 +2,9 @@ import React from "react";
 
 function Alerts(props) {
   return (
-    <div style={{ height: "15px", margin:"50px 0px"}}>
+    <div style={{ height: "15px", margin:"0px",
+      marginBottom:"60px"
+    }}>
       {props.alert && (
         <div
           className={`alert alert-${props.alert.type} alert-dismissible fade show`}

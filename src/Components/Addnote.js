@@ -151,7 +151,6 @@ export const Addnote = (props) => {
               </div>
             )}
 
-            {/* Note Textarea */}
             <div className="form-group">
               <label
                 htmlFor="noteText"
