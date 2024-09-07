@@ -1,0 +1,96 @@
+
+input::placeholder {
+    color: rgb(197, 197, 197);
+  }
+  
+  /* Dark mode placeholder */
+  input.dark-mode::placeholder {
+    color: rgb(204, 200, 200);
+    }
+  
+    /* form-container.css */
+  /* Outer Container Styles */
+  .form-outer-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 1rem;
+    border: 1px solid #343a40; /* Darker border color for contrast */
+    border-radius: 0.5rem;
+    background-color: #19191a; /* Optional: Background color for contrast */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds subtle shadow for depth */
+    box-sizing: border-box;
+  }
+  /* General Form Container Styles */
+  .form-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 1rem;
+  }
+  
+  /* Form Group Styles */
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  /* Label Styles */
+  .form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+  
+  /* Input Styles */
+  .form-input,
+  .form-select,
+  .form-textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    box-sizing: border-box;
+  }
+  
+  .form-input:focus,
+  .form-select:focus,
+  .form-textarea:focus {
+    border-color: #80bdff;
+    outline: none;
+  }
+  
+  /* Textarea Specific Styles */
+  .form-textarea {
+    height: 150px;
+    resize: vertical;
+  }
+  
+  /* Button Styles */
+  .btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .btn-light {
+    background-color: #f8f9fa;
+    color: #212529;
+  }
+  
+  .btn-dark {
+    background-color: #343a40;
+    color: #f8f9fa;
+  }
+  
+  .btn-light:hover,
+  .btn-dark:hover {
+    opacity: 0.8;
+  }
+  
+  
+  

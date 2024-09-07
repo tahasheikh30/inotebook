@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../App.css";
+import "./Navbar.css";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar(props) {
   const location = useLocation();
@@ -9,6 +10,16 @@ export default function Navbar(props) {
   React.useEffect(() => {
     // ga('send', 'pageview');
   }, [location]);
+
+  const navigate = useNavigate();
+
+  const handleLoginClick = () => {
+    navigate("/login");
+  };
+
+  const handleSignupClick = () => {
+    navigate("/signup");
+  };
 
   return (
     <div>
@@ -79,14 +90,14 @@ export default function Navbar(props) {
 
           {/* Right side: Login, Sign up, and Dark Mode */}
           <div className="d-flex align-items-center">
-            <button className={`button-auth ${props.mode === "dark" ? "dark-mode" : ""}`}>
+            <button className={`button-auth`} onClick={handleSignupClick}>
               Sign up
               <div className="arrow-wrapper">
                 <div className="arrow"></div>
               </div>
             </button>
 
-            <button className={`button-auth ${props.mode === "dark" ? "dark-mode" : ""}`}>
+            <button className={`button-auth`} onClick={handleLoginClick}>
               Login
               <div className="arrow-wrapper">
                 <div className="arrow"></div>
