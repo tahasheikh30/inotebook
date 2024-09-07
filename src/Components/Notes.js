@@ -12,7 +12,7 @@ export default function Notes(props) {
   }, []);
 
   const ref = useRef(null);
-  const refClose = useRef(null)
+  const refClose = useRef(null);
   const [note, setNote] = useState({
     id: "",
     etitle: "",
@@ -37,24 +37,16 @@ export default function Notes(props) {
 
   const handleUpdateNote = (event) => {
     event.preventDefault();
-  
+
     // Determine whether to use a predefined tag or custom tag
     const tagToUse = isCustomTag ? note.ecustomTag : note.etag;
-  
+
     // Call editNote with the selected or custom tag
-    editNote(
-      note.id, 
-      note.etitle, 
-      note.edescription, 
-      tagToUse, 
-      note.enoteText
-    );
-    props.showAlert("Note updated successfully!", "success")
+    editNote(note.id, note.etitle, note.edescription, tagToUse, note.enoteText);
+    props.showAlert("Note updated successfully!", "success");
     // Close the modal after updating the note
     refClose.current.click();
-    
   };
-  
 
   const onChange = (event) => {
     setNote({
@@ -76,6 +68,32 @@ export default function Notes(props) {
 
   return (
     <>
+   {/* Center: Search bar */}
+<div className="search-bar-container" style={{ display: "flex", justifyContent: "center", margin: "20px 0" }}>
+  <form className="d-flex" role="search" style={{ width: "50%" }}> {/* Adjust the form width to half */}
+    <input
+      className={`form-control me-2 ${props.mode === "dark" ? "dark-mode" : ""}`}
+      type="search"
+      placeholder="Search note"
+      aria-label="Search"
+      style={{
+        backgroundColor: props.mode === "dark" ? "#212529" : "white",
+        color: props.mode === "dark" ? "white" : "black",
+        width: "100%", // Make the input take up the full width of the form
+      }}
+    />
+    <button className="cssbuttons-io-button" type="submit" style={{ marginLeft: "10px" }}>
+      Search
+      <div className="icon">
+        <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" fill="currentColor"></path>
+        </svg>
+      </div>
+    </button>
+  </form>
+</div>
+
       <Addnote
         mode={props.mode}
         toggleMode={props.toggleMode}
@@ -321,6 +339,15 @@ export default function Notes(props) {
         >
           All notes
         </h2>
+        {notes.length === 0 && (
+          <div
+            style={{
+              color: props.mode === "dark" ? "white" : "black"
+            }}
+          >
+            No notes to display
+          </div>
+        )}
         {notes.map((note) => {
           return (
             <Noteitem

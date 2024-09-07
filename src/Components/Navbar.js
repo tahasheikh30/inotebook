@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 
 export default function Navbar(props) {
   const location = useLocation();
-  
+
   React.useEffect(() => {
     // ga('send', 'pageview');
   }, [location]);
@@ -16,70 +16,96 @@ export default function Navbar(props) {
         className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}
       >
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
-            <strong>{props.title}</strong>
-          </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          {/* Left side: Brand and links */}
+          <div className="d-flex align-items-center">
+            <Link className="navbar-brand" to="/">
+              <strong>{props.title}</strong>
+            </Link>
+            <ul className="navbar-nav mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className={`nav-link ${location.pathname === "/" ? "active" : ""}`} to="/">
+                <Link
+                  className={`nav-link button-special ${
+                    location.pathname === "/" ? "active" : ""
+                  }`}
+                  to="/"
+                  style={{
+                    color:
+                      location.pathname === "/"
+                        ? props.mode === "dark"
+                          ? "#fff"
+                          : "#007bff" // Blue color for active link in light mode
+                        : props.mode === "dark"
+                        ? "#adb5bd"
+                        : "#343a40", // Default text color for light mode
+                    borderBottom:
+                      location.pathname === "/"
+                        ? props.mode === "dark"
+                          ? "2px solid #fff"
+                          : "2px solid #007bff" // Blue underline in light mode
+                        : "none", // No underline for non-active links
+                  }}
+                >
                   Home
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className={`nav-link ${location.pathname === "/about" ? "active" : ""}`} to="/about">
+                <Link
+                  className={`nav-link button-special ${
+                    location.pathname === "/about" ? "active" : ""
+                  }`}
+                  to="/about"
+                  style={{
+                    color:
+                      location.pathname === "/about"
+                        ? props.mode === "dark"
+                          ? "#fff"
+                          : "#007bff" // Blue for active link in light mode
+                        : props.mode === "dark"
+                        ? "#adb5bd"
+                        : "#343a40", // Default for light mode
+                    borderBottom:
+                      location.pathname === "/about"
+                        ? props.mode === "dark"
+                          ? "2px solid #fff"
+                          : "2px solid #007bff" // Blue underline in light mode
+                        : "none",
+                  }}
+                >
                   About
                 </Link>
               </li>
             </ul>
-            <form className="d-flex" role="search">
-              <input
-                className={`form-control me-2 ${
-                  props.mode === "dark" ? "dark-mode" : ""
-                }`}
-                type="search"
-                placeholder="Search note"
-                aria-label="Search"
+          </div>
+
+          {/* Right side: Login, Sign up, and Dark Mode */}
+          <div className="d-flex align-items-center">
+            <button class="button-auth">
+              Login
+            </button>
+
+            <div>
+              <button class="button-auth">
+                Signup
+              </button>
+            </div>
+
+            {/* Dark Mode Switch */}
+            <div className="dark-mode-switch-container">
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  className="dark-mode-switch"
+                  id="flexSwitchCheckDefault"
+                  onClick={props.toggleMode}
+                />
+                <span className="slider"></span>
+              </label>
+              <label
+                className="dark-mode-text"
+                htmlFor="flexSwitchCheckDefault"
                 style={{
-                  backgroundColor: props.mode === "dark" ? "#212529" : "white",
                   color: props.mode === "dark" ? "white" : "black",
                 }}
-              />
-              <button
-                className={`btn btn-outline-success ${
-                  props.mode === "dark" ? "dark-mode" : ""
-                }`}
-                type="submit"
-              >
-                Search
-              </button>
-            </form>
-            <div
-              className={`form-check form-switch mx-3 text-${
-                props.mode === "light" ? "dark" : "light"
-              }`}
-            >
-              <input
-                className="form-check-input"
-                type="checkbox"
-                role="switch"
-                id="flexSwitchCheckDefault"
-                onClick={props.toggleMode}
-              />
-              <label
-                className="form-check-label"
-                htmlFor="flexSwitchCheckDefault"
               >
                 Dark Mode
               </label>

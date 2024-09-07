@@ -130,25 +130,292 @@ input.dark-mode::placeholder {
   opacity: 0.8;
 }
 
-.btn-outline-success {
-  border: 1px solid #28a745;
-  background-color: white; /* Light mode background */
-  color: #28a745;
+
+/* Search Bar Styles */
+.search-bar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0; /* Appropriate margins on all sides */
 }
 
-.btn-outline-success:hover {
-  background-color: #28a745;
+.search-bar-container .form-control {
+  width: 50%; /* Set the width to 50% for a half-size search bar */
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+}
+
+.search-bar-container .form-control.dark-mode {
+  background-color: #212529;
   color: white;
 }
 
-/* Dark Mode Styles */
-.btn-outline-success.dark-mode {
-  border: 1px solid #28a745;
-  background-color: #212529; /* Dark mode background */
-  color: #28a745;
+.search-bar-container .form-control::placeholder {
+  color: rgb(197, 197, 197); /* Default placeholder color */
 }
 
-.btn-outline-success.dark-mode:hover {
-  background-color: #28a745;
-  color: white;
+.search-bar-container .form-control.dark-mode::placeholder {
+  color: rgb(204, 200, 200); /* Dark mode placeholder color */
 }
+
+.cssbuttons-io-button {
+  margin-left: 10px; /* To add space between input and button */
+  background: #a370f0;
+  color: white;
+  font-family: inherit;
+  padding: 0.25em;
+  padding-left: 1em;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 0.8em;
+  border: none;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  box-shadow: inset 0 0 1.4em -0.5em #714da6;
+  overflow: hidden;
+  position: relative;
+  height: 2.5em;
+  padding-right: 4em;
+  width: 9em;
+  cursor: pointer;
+}
+
+.cssbuttons-io-button .icon {
+  background: white;
+  margin-left: 1em;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2em;
+  width: 2.5em;
+  border-radius: 0.6em;
+  box-shadow: 0.1em 0.1em 0.5em 0.2em #7b52b9;
+  right: 0.3em;
+  transition: all 0.3s;
+}
+
+.cssbuttons-io-button:hover .icon {
+  width: calc(100% - 0.6em);
+}
+
+.cssbuttons-io-button .icon svg {
+  width: 1em;
+  transition: transform 0.3s;
+  color: #7b52b9;
+}
+
+.cssbuttons-io-button:hover .icon svg {
+  transform: translateX(0.1em);
+}
+
+.cssbuttons-io-button:active .icon {
+  transform: scale(0.95);
+}
+
+/* Responsive for mobile screens */
+@media (max-width: 768px) {
+  .search-bar-container .form-control {
+    width: 100%; /* Full width for mobile devices */
+  }
+}
+
+.switch {
+  display: block;
+  --width-of-switch: 2.5em; /* Reduced width */
+  --height-of-switch: 1.4em; /* Reduced height */
+  --size-of-icon: 1em; /* Reduced icon size */
+  --slider-offset: 0.2em; /* Reduced padding for the slider */
+  position: relative;
+  width: var(--width-of-switch);
+  height: var(--height-of-switch);
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f4f4f5;
+  transition: 0.4s;
+  border-radius: 30px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: var(--size-of-icon);
+  width: var(--size-of-icon);
+  border-radius: 20px;
+  left: var(--slider-offset);
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(40deg, #ff0080, #ff8c00 70%);
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #303136;
+}
+
+input:checked + .slider:before {
+  left: calc(100% - (var(--size-of-icon) + var(--slider-offset)));
+  background: #303136;
+  box-shadow: inset -3px -2px 5px -2px #8983f7, inset -10px -4px 0 0 #a3dafb;
+}
+
+.form-check-label {
+  margin-left: 0.4em; /* Adjust margin for smaller switch */
+  color: #000; /* Light mode text color */
+}
+
+input:checked ~ .form-check-label {
+  color: #fff; /* Dark mode text color */
+}
+
+
+.dark-mode-switch-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.form-check-label {
+  margin-left: 0.4em;
+  color: #000;
+}
+
+input:checked ~ .form-check-label {
+  color: #fff;
+}
+
+/* Styles specific to navbar links (Home and About) */
+.navbar-nav .nav-link {
+  font-size: 16px; 
+  padding: 8px 12px;
+  font-weight: 700;
+  cursor: pointer;
+  position: relative;
+  text-transform: uppercase;
+  transition: color 400ms cubic-bezier(0.25, 0.8, 0.25, 1),
+    border-bottom 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Hover effects for Home and About links */
+.navbar-nav .nav-link:focus,
+.navbar-nav .nav-link:hover {
+  color: #fff;
+}
+
+/* Active link indicator */
+.navbar-nav .nav-link.active {
+  border-bottom: 2px solid #fff;
+}
+
+/* Light mode styling for navbar links */
+.navbar-light .nav-link {
+  color: #343a40;
+}
+
+/* UPDATED: Active link styling in light mode */
+.navbar-light .nav-link.active {
+  color: #007bff; /* Set to blue for the active link in light mode */
+  border-bottom: 2px solid #007bff; /* Blue underline for active state */
+}
+
+.navbar-light .nav-link:hover,
+.navbar-light .nav-link:focus {
+  color: #0056b3; /* Darker blue on hover for better contrast */
+}
+
+/* Dark mode styling for navbar links */
+.navbar-dark .nav-link {
+  color: #adb5bd;
+}
+
+.navbar-dark .nav-link.active {
+  color: #fff;
+  border-bottom: 2px solid #fff;
+}
+
+.button-auth {
+  --bezier: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --edge-light: hsla(0, 0%, 50%, 0.8);
+  --text-light: rgba(255, 255, 255, 0.4);
+  --back-color: 240, 40%;
+
+  cursor: pointer;
+  padding: 0.63em 0.9em; /* Reduced padding */
+  border-radius: 0.45em; /* Reduced border-radius slightly */
+  min-height: 2.16em; /* Reduced min-height by 10% */
+  min-width: 2.7em; /* Reduced min-width by 10% */
+  display: flex;
+  align-items: center;
+  gap: 0.45em; /* Reduced gap slightly */
+
+  font-size: 14.4px; /* Reduced font-size slightly */
+  letter-spacing: 0.045em; /* Adjusted letter-spacing */
+  line-height: 1;
+  font-weight: bold;
+
+  background: linear-gradient(
+    140deg,
+    hsla(var(--back-color), 50%, 1) min(1.8em, 20%),
+    hsla(var(--back-color), 50%, 0.6) min(7.2em, 100%)
+  );
+  color: hsla(0, 0%, 90%);
+  border: 0;
+  box-shadow: inset 0.36px 0.9px 3.6px var(--edge-light); /* Reduced shadow size */
+  
+  transition: all 0.1s var(--bezier);
+  margin-right: 9px; /* Adjust margin if necessary */
+}
+
+.button-auth:hover {
+  --edge-light: hsla(0, 0%, 50%, 1);
+  text-shadow: 0px 0px 7.2px var(--text-light); /* Adjusted text-shadow */
+  box-shadow: inset 0.36px 0.9px 3.6px var(--edge-light),
+    0.9px 1.8px 4.5px hsla(0, 0%, 0%, 0.295); /* Adjusted shadow size */
+  transform: scale(0.945); /* Adjusted scaling */
+}
+
+.button-auth:active {
+  --text-light: rgba(255, 255, 255, 1);
+
+  background: linear-gradient(
+    140deg,
+    hsla(var(--back-color), 50%, 1) min(1.8em, 20%),
+    hsla(var(--back-color), 50%, 0.6) min(7.2em, 100%)
+  );
+  box-shadow: inset 0.36px 0.9px 7.2px var(--edge-light),
+    0px 0px 7.2px hsla(var(--back-color), 50%, 0.6); /* Adjusted shadow size */
+  text-shadow: 0px 0px 18px var(--text-light); /* Adjusted text-shadow */
+  color: hsla(0, 0%, 100%, 1);
+  letter-spacing: 0.09em; /* Adjusted letter-spacing */
+  transform: scale(0.945); /* Adjusted scaling */
+}
+
+
+.dark-mode-text {
+  font-size: 16px; /* Adjust for size */
+  font-weight: 600; /* Makes the text bold */
+  color: #333; /* Darker color for light mode */
+  transition: color 0.3s ease-in-out; /* Smooth transition for dark mode */
+  margin-left: 10px; /* Space between the text and the switch */
+}
+
+.dark-mode-text {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* To give spacing between the text and switch */
+}
+

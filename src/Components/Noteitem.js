@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import noteContext from "../context/notes/noteContext";
 
 const Noteitem = (props) => {
@@ -29,11 +29,16 @@ const Noteitem = (props) => {
             <i
               className="fa-solid fa-trash"
               style={{ color: props.mode === "dark" ? "white" : "black" }}
-              onClick={()=>{deleteNote(note._id)}}
+              onClick={() => {
+                deleteNote(note._id); // First function call to delete the note
+                props.showAlert("Note Deleted!", "danger"); // Second function call to show the alert
+              }}
             ></i>
             <i
               className="fa-solid fa-pen-to-square"
-              onClick={()=>{updateNote(note)}}
+              onClick={() => {
+                updateNote(note);
+              }}
               style={{ color: props.mode === "dark" ? "white" : "black" }}
             ></i>
           </div>

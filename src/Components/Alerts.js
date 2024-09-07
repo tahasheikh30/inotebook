@@ -2,7 +2,7 @@ import React from "react";
 
 function Alerts(props) {
   return (
-    <div style={{ height: "15px", margin:"0px",
+    <div style={{ height: "10px", margin:"0px",
       marginBottom:"60px"
     }}>
       {props.alert && (
