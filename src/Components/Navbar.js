@@ -79,15 +79,19 @@ export default function Navbar(props) {
 
           {/* Right side: Login, Sign up, and Dark Mode */}
           <div className="d-flex align-items-center">
-            <button class="button-auth">
-              Login
+            <button className={`button-auth ${props.mode === "dark" ? "dark-mode" : ""}`}>
+              Sign up
+              <div className="arrow-wrapper">
+                <div className="arrow"></div>
+              </div>
             </button>
 
-            <div>
-              <button class="button-auth">
-                Signup
-              </button>
-            </div>
+            <button className={`button-auth ${props.mode === "dark" ? "dark-mode" : ""}`}>
+              Login
+              <div className="arrow-wrapper">
+                <div className="arrow"></div>
+              </div>
+            </button>
 
             {/* Dark Mode Switch */}
             <div className="dark-mode-switch-container">

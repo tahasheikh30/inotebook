@@ -348,60 +348,86 @@ input:checked ~ .form-check-label {
 }
 
 .button-auth {
-  --bezier: cubic-bezier(0.22, 0.61, 0.36, 1);
-  --edge-light: hsla(0, 0%, 50%, 0.8);
-  --text-light: rgba(255, 255, 255, 0.4);
-  --back-color: 240, 40%;
-
-  cursor: pointer;
-  padding: 0.63em 0.9em; /* Reduced padding */
-  border-radius: 0.45em; /* Reduced border-radius slightly */
-  min-height: 2.16em; /* Reduced min-height by 10% */
-  min-width: 2.7em; /* Reduced min-width by 10% */
-  display: flex;
-  align-items: center;
-  gap: 0.45em; /* Reduced gap slightly */
-
-  font-size: 14.4px; /* Reduced font-size slightly */
-  letter-spacing: 0.045em; /* Adjusted letter-spacing */
-  line-height: 1;
-  font-weight: bold;
-
-  background: linear-gradient(
-    140deg,
-    hsla(var(--back-color), 50%, 1) min(1.8em, 20%),
-    hsla(var(--back-color), 50%, 0.6) min(7.2em, 100%)
-  );
-  color: hsla(0, 0%, 90%);
+  --primary-color: #fff;
+  --secondary-color: #002152;
+  --hover-color: #eceff2;
+  --dark-primary-color: #333;
+  --dark-secondary-color: #ddd;
+  --dark-hover-color: #444;
+  --arrow-width: 7px; /* Further reduced */
+  --arrow-stroke: 1.5px; /* Further reduced */
+  box-sizing: border-box;
   border: 0;
-  box-shadow: inset 0.36px 0.9px 3.6px var(--edge-light); /* Reduced shadow size */
-  
-  transition: all 0.1s var(--bezier);
-  margin-right: 9px; /* Adjust margin if necessary */
+  border-radius: 50px;
+  color: var(--secondary-color);
+  padding: 0.7em 1.3em; /* Further reduced */
+  background: var(--primary-color);
+  display: flex;
+  transition: 0.2s background;
+  align-items: center;
+  gap: 0.5em; /* Further reduced */
+  font-weight: bold;
+  font-size: 80%; /* Further reduced */
+  margin-right: 1em; /* Increased margin */
+}
+
+.button-auth .arrow-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-auth .arrow {
+  margin-top: 1px;
+  width: var(--arrow-width);
+  background: var(--primary-color);
+  height: var(--arrow-stroke);
+  position: relative;
+  transition: 0.2s;
+}
+
+.button-auth .arrow::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  border: solid var(--secondary-color);
+  border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
+  display: inline-block;
+  top: -3px;
+  right: 3px;
+  transition: 0.2s;
+  padding: 2.2px; /* Further reduced */
+  transform: rotate(-45deg);
 }
 
 .button-auth:hover {
-  --edge-light: hsla(0, 0%, 50%, 1);
-  text-shadow: 0px 0px 7.2px var(--text-light); /* Adjusted text-shadow */
-  box-shadow: inset 0.36px 0.9px 3.6px var(--edge-light),
-    0.9px 1.8px 4.5px hsla(0, 0%, 0%, 0.295); /* Adjusted shadow size */
-  transform: scale(0.945); /* Adjusted scaling */
+  background-color: var(--hover-color);
 }
 
-.button-auth:active {
-  --text-light: rgba(255, 255, 255, 1);
+.button-auth:hover .arrow {
+  background: var(--secondary-color);
+}
 
-  background: linear-gradient(
-    140deg,
-    hsla(var(--back-color), 50%, 1) min(1.8em, 20%),
-    hsla(var(--back-color), 50%, 0.6) min(7.2em, 100%)
-  );
-  box-shadow: inset 0.36px 0.9px 7.2px var(--edge-light),
-    0px 0px 7.2px hsla(var(--back-color), 50%, 0.6); /* Adjusted shadow size */
-  text-shadow: 0px 0px 18px var(--text-light); /* Adjusted text-shadow */
-  color: hsla(0, 0%, 100%, 1);
-  letter-spacing: 0.09em; /* Adjusted letter-spacing */
-  transform: scale(0.945); /* Adjusted scaling */
+.button-auth:hover .arrow:before {
+  right: 0;
+}
+
+/* Dark mode styles */
+.dark-mode .button-auth {
+  background: var(--dark-primary-color);
+  color: var(--dark-secondary-color);
+}
+
+.dark-mode .button-auth:hover {
+  background-color: var(--dark-hover-color);
+}
+
+.dark-mode .button-auth .arrow {
+  background: var(--dark-secondary-color);
+}
+
+.dark-mode .button-auth .arrow::before {
+  border-color: var(--dark-secondary-color);
 }
 
 
