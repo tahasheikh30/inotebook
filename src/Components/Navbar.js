@@ -36,12 +36,12 @@ export default function Navbar(props) {
               <li className="nav-item">
                 <Link
                   className={`nav-link button-special ${
-                    location.pathname === "/" ? "active" : ""
+                    location.pathname === "/home" ? "active" : ""
                   }`}
-                  to="/"
+                  to="/home"
                   style={{
                     color:
-                      location.pathname === "/"
+                      location.pathname === "/home"
                         ? props.mode === "dark"
                           ? "#fff"
                           : "#007bff" // Blue color for active link in light mode
@@ -49,7 +49,7 @@ export default function Navbar(props) {
                         ? "#adb5bd"
                         : "#343a40", // Default text color for light mode
                     borderBottom:
-                      location.pathname === "/"
+                      location.pathname === "/home"
                         ? props.mode === "dark"
                           ? "2px solid #fff"
                           : "2px solid #007bff" // Blue underline in light mode

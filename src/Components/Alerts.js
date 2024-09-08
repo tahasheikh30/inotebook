@@ -14,7 +14,8 @@ function Alerts(props) {
             width: "99vw",     // Full width of the viewport
             zIndex: 9999,       // Ensure it appears above other content
             margin: "0",        // Remove any default margin
-            borderRadius: "10px", // Rounded corners
+            borderBottomLeftRadius: "15px", // Rounded corners
+            borderBottomRightRadius: "15px", // Rounded corners
             boxSizing: "border-box", // Include padding in the width calculation
           }}
         >

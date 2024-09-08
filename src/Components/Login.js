@@ -1,43 +1,84 @@
-import React from 'react';
+import React, {useState} from 'react';
 import "./Login.css";
+import { useNavigate } from 'react-router-dom';
 
-function Login() {
-  return (
-    <div
-    className="login-wrapper"
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: "40px"
-      }}
-    >
-      <div className="login-container">
-        <div className="login-heading">Sign In</div>
-        <form className="login-form" action="">
-          <input
-            placeholder="E-mail"
-            id="email"
-            name="email"
-            type="email"
-            className="login-input"
-            required
-          />
-          <input
-            placeholder="Password"
-            id="password"
-            name="password"
-            type="password"
-            className="login-input"
-            required
-          />
-          <span className="login-forgot-password">
-            <a href="/"><strong>Forgot Password ?</strong></a>
-          </span>
-          <input value="Sign In" type="submit" className="login-button" />
-        </form>
+function Login(props) {
+
+    const [credentials, setCredentials] = useState({
+      email: "",
+      password: ""
+    });
+    const navigate = useNavigate();
+  
+    const handleChange = (event) => {
+      setCredentials({ ...credentials, [event.target.name]: event.target.value });
+    };
+  
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+      try {
+        const response = await fetch(`http://localhost:5000/api/auth/login`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({email: credentials.email, password: credentials.password})
+        });
+        const json = await response.json();
+        console.log(json);
+        if (json.success===true) {
+          localStorage.setItem('token', json.token)
+          navigate("/home"); // Example redirection after login
+        }
+        else {
+          props.showAlert("Invalid Credentials", "danger");
+          }
+      } catch (error) {
+        console.error("Error during login:", error);
+        // Handle error
+      }
+    };
+  
+    return (
+      <div
+        className="login-wrapper"
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          margin: "40px"
+        }}
+      >
+        <div className="login-container">
+          <div className="login-heading">Sign In</div>
+          <form className="login-form" onSubmit={handleSubmit}>
+            <input
+              placeholder="E-mail"
+              id="email"
+              name="email"
+              type="email"
+              className="login-input"
+              value={credentials.email}
+              onChange={handleChange}
+              required
+            />
+            <input
+              placeholder="Password"
+              id="password"
+              name="password"
+              type="password"
+              className="login-input"
+              value={credentials.password}
+              onChange={handleChange}
+              required
+            />
+            <span className="login-forgot-password">
+              <a href="/"><strong>Forgot Password?</strong></a>
+            </span>
+            <input value="Sign In" type="submit" className="login-button" />
+          </form>
         <div className="login-social-account-container">
-          <span className="login-title"><strong>Or Sign in with</strong></span>
+          <span className="login-title" style={{margin:"15px"}}><strong><h6>Or Sign in with</h6></strong></span>
           <div className="login-social-accounts">
             <button className="login-social-button login-google">
               <svg
@@ -78,5 +119,6 @@ function Login() {
     </div>
   );
 }
+
 
 export default Login;

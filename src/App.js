@@ -44,7 +44,7 @@ function App() {
       <Alerts alert={alert}/>
       <div className='container'>
       <Routes>
-        <Route exact path="/" element={<Home mode={mode} toggleMode={toggleMode} showAlert={showAlert} />} />
+        <Route exact path="/home" element={<Home mode={mode} toggleMode={toggleMode} showAlert={showAlert} />} />
         <Route exact path="/about" element={<About mode={mode} toggleMode={toggleMode} showAlert={showAlert}/>} />
         <Route exact path="/login" element={<Login mode={mode} toggleMode={toggleMode} showAlert={showAlert}/>} />
         <Route exact path="/signup" element={<Signup mode={mode} toggleMode={toggleMode} showAlert={showAlert}/>} />
