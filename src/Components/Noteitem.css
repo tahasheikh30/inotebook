@@ -1,0 +1,101 @@
+.flip-card {
+    background-color: transparent;
+    width: 240px;
+    height: 254px;
+    perspective: 1000px;
+    font-family: sans-serif;
+    margin-bottom: 20px;
+  }
+  
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+  
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  /* Dark mode - Front and Back */
+  .flip-card-front,
+  .flip-card-back {
+    box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.2);
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 1rem;
+    border: 1px solid #1a3d5d;
+  }
+  
+  .flip-card-front {
+    background: linear-gradient(120deg, #003366 60%, #00284d 88%, #001f3f 40%, #001122 48%);
+    color: #e0eaf1;
+  }
+  
+  .flip-card-back {
+    background: linear-gradient(120deg, #00284d 30%, #003366 88%, #001f3f 40%, #001122 78%);
+    color: #e0eaf1;
+    transform: rotateY(180deg);
+    padding: 10px;
+  }
+  
+  /* Light mode - Front and Back */
+  .flip-card-front-light,
+  .flip-card-back-light {
+    box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.1);
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 1rem;
+    border: 1px solid #b0d4ff; /* Lighter border color for light mode */
+  }
+  
+  .flip-card-front-light {
+    background: linear-gradient(120deg, #b0eaff 60%, #99ddff 88%, #80d4ff 40%, #e0f7ff 48%);
+    color: #003366; /* Darker text for contrast in light mode */
+  }
+  
+  .flip-card-back-light {
+    background: linear-gradient(120deg, #99ddff 30%, #b0eaff 88%, #80d4ff 40%, #e0f7ff 78%);
+    color: #003366;
+    transform: rotateY(180deg);
+    padding: 10px;
+  }
+  
+  
+  
+  
+  .flip-card-back i {
+    cursor: pointer;
+    font-size: 1.2em;
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+  
+  .d-flex.justify-content-between.mt-3 {
+    padding: 0 10px;
+  }
+  
+  .title {
+    font-size: 1.2em;
+  }
+  
+  .flip-card-back p {
+    margin: 0;
+    text-align: left;
+  }
+  
