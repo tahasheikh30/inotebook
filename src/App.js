@@ -7,7 +7,7 @@ import Signup from "./components/Signup";
 import Navbar from "./components/Navbar";
 import React, { useState } from "react";
 import Alerts from "./components/Alerts";
-import NoteState from "./context/notes/NoteState";
+import NoteState from "./context/notes/noteState";
 
 function App() {
   const [mode, setDarkMode] = useState("light");
@@ -32,7 +32,7 @@ function App() {
     });
     setTimeout(() => {
       setAlert(null);
-    }, 5000);
+    }, 3000);
   };
 
 
@@ -41,7 +41,7 @@ function App() {
       <NoteState>
       <Router>
       <Navbar mode={mode} toggleMode={toggleMode} title="iNotebook" />
-      <Alerts alert={alert}/>
+      <Alerts alert={alert} showAlert={showAlert} />
       <div className='container'>
       <Routes>
         <Route exact path="/home" element={<Home mode={mode} toggleMode={toggleMode} showAlert={showAlert} />} />

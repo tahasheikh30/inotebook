@@ -21,6 +21,11 @@ export default function Navbar(props) {
     navigate("/signup");
   };
 
+  const handleSignoutClick = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
+
   return (
     <div>
       <nav
@@ -90,20 +95,30 @@ export default function Navbar(props) {
 
           {/* Right side: Login, Sign up, and Dark Mode */}
           <div className="d-flex align-items-center">
-            <button className={`button-auth`} onClick={handleSignupClick}>
-              Sign up
-              <div className="arrow-wrapper">
-                <div className="arrow"></div>
-              </div>
-            </button>
+            {!localStorage.getItem("token") ? (
+              <div className="d-flex align-items-center">
+                <button className={`button-auth`} onClick={handleSignupClick}>
+                  Sign up
+                  <div className="arrow-wrapper">
+                    <div className="arrow"></div>
+                  </div>
+                </button>
 
-            <button className={`button-auth`} onClick={handleLoginClick}>
-              Login
-              <div className="arrow-wrapper">
-                <div className="arrow"></div>
+                <button className={`button-auth`} onClick={handleLoginClick}>
+                  Login
+                  <div className="arrow-wrapper">
+                    <div className="arrow"></div>
+                  </div>
+                </button>
               </div>
-            </button>
-
+            ) : (
+              <button className={`button-auth`} onClick={handleSignoutClick}>
+                Sign out
+                <div className="arrow-wrapper">
+                  <div className="arrow"></div>
+                </div>
+              </button>
+            )}
             {/* Dark Mode Switch */}
             <div className="dark-mode-switch-container">
               <label className="switch">

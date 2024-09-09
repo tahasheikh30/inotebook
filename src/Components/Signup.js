@@ -17,21 +17,25 @@ function Signup(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch(`http://localhost:5000/api/auth/createuser`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: credentials.name,
-          email: credentials.email,
-          password: credentials.password,
-        }),
-      });
-  
+      const response = await fetch(
+        "http://localhost:5000/api/auth/createuser",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: credentials.name,
+            email: credentials.email,
+            password: credentials.password,
+          }),
+        }
+      );
+
       const json = await response.json();
       if (json.success) {
         localStorage.setItem("token", json.token);
+
         navigate("/home"); // Redirect upon successful signup
       } else {
         // Show error if user already exists
@@ -42,7 +46,6 @@ function Signup(props) {
       props.showAlert("Internal Server Error", "danger");
     }
   };
-  
 
   return (
     <div
@@ -75,8 +78,8 @@ function Signup(props) {
             className="signup-input"
             value={credentials.email}
             onChange={handleChange}
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" // Simple email pattern
             title="Please enter a valid email address"
+            pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" 
             required
           />
 
