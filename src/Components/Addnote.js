@@ -10,8 +10,19 @@ export const Addnote = (props) => {
 
   const handleAddNote = (event) => {
     event.preventDefault();
+
+    // Check if all fields are empty
+    if (!note.title && !note.description && !note.tag && !note.noteText) {
+      props.showAlert("Empty note discarded", "warning"); // Display alert
+      return; // Stop further execution
+    }
+
     const tagToUse = isCustomTag ? note.customTag : note.tag; // Use custom tag if selected
-    addNote(note.title, note.description, tagToUse);
+    addNote(note.title, note.description, tagToUse, note.noteText);
+    
+    // Optionally clear the note fields after submission
+    setNote({ title: "", description: "", tag: "", noteText: "", customTag: "" });
+    setIsCustomTag(false); // Reset custom tag state
   };
 
   const onChange = (event) => {
