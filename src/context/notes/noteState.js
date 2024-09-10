@@ -21,14 +21,14 @@ const NoteState = (props) => {
   };
 
   // Add a note
-  const addNote = async (title, description, tag) => {
+  const addNote = async (title, description, tag, noteText) => {
     const response = await fetch(`${host}/api/notes/addnote`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "auth-token": localStorage.getItem("token"),
       },
-      body: JSON.stringify({ title, description, tag }),
+      body: JSON.stringify({ title, description, tag, noteText}),
     });
     const note = await response.json(); // Use the response to get the actual note data
     setNotes([...notes, note]); // Use spread operator to add the new note
@@ -50,20 +50,20 @@ const NoteState = (props) => {
   };
 
   // Edit a note
-  const editNote = async (id, title, description, tag) => {
+  const editNote = async (id, title, description, tag, noteText) => {
     const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
         "auth-token": localStorage.getItem("token"),
       },
-      body: JSON.stringify({ title, description, tag }),
+      body: JSON.stringify({ title, description, tag, noteText }),
     });
     const json = await response.json();
     console.log(json);
 
     const updatedNotes = notes.map((note) =>
-      note._id === id ? { ...note, title, description, tag } : note
+      note._id === id ? { ...note, title, description, tag, noteText } : note
     );
     setNotes(updatedNotes);
   };
