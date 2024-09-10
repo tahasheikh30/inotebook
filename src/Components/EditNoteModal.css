@@ -1,0 +1,78 @@
+/* src/components/Modal.css */
+.modal-content {
+    background-color: #011522;
+    border-radius: 8px;
+    z-index: 1;
+    color: white; /* Set text color to white for better contrast */
+  }
+  
+  .modal-header {
+    border-bottom: none; /* Remove default border */
+    background-color: #011522; /* Match the card background */
+    color: white; /* Match the text color */
+  }
+  
+  .modal-footer {
+    border-top: none; /* Remove default border */
+    background-color: #011522; /* Match the card background */
+  }
+  
+  .modal-body {
+    padding: 20px; /* Add some padding to the modal body */
+  }
+  
+  .form-input, .form-select, .form-textarea {
+    background-color: #011522;
+    color: white;
+    border: 1px solid #333; /* Add a subtle border */
+    border-radius: 4px;
+  }
+  
+  .btn-secondary, .btn-primary {
+    border-radius: 8px;
+  }
+  
+  .btn-primary {
+    background-color: #00ca4e; /* Green color */
+    border: none;
+  }
+  
+  .btn-secondary {
+    background-color: #ff605c; /* Red color */
+    border: none;
+  }
+  
+  .btn-close {
+    filter: invert(1); /* Adjust close button color for better visibility */
+  }
+  
+.tools {
+  display: flex;
+  align-items: center;
+  padding: 9px;
+}
+
+.circle {
+  padding: 0 4px;
+}
+
+.box {
+  display: inline-block;
+  align-items: center;
+  width: 10px;
+  height: 10px;
+  padding: 1px;
+  border-radius: 50%;
+}
+
+.red {
+  background-color: #ff605c;
+}
+
+.yellow {
+  background-color: #ffbd44;
+}
+
+.green {
+  background-color: #00ca4e;
+}
