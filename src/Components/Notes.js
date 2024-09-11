@@ -3,13 +3,15 @@ import noteContext from "../context/notes/noteContext";
 import { useNavigate } from "react-router-dom";
 import Noteitem from "./Noteitem";
 import { Addnote } from "./Addnote";
-import EditNoteModal from "./EditNoteModal"; // Import the new component
+import EditNoteModal from "./EditNoteModal";
 import "./Note.css";
 
 export default function Notes(props) {
   const context = useContext(noteContext);
   const navigate = useNavigate();
-  const { notes, getNotes, editNote } = context;
+  const { notes, getNotes, editNote, searchNote } = context; // Destructure searchNote
+
+  const [searchTerm, setSearchTerm] = useState(""); // State to track search term
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -21,7 +23,7 @@ export default function Notes(props) {
   }, []);
 
   const ref = useRef(null);
-  const refClose = useRef(null); // Ref to close the modal
+  const refClose = useRef(null);
   const [note, setNote] = useState({
     id: "",
     etitle: "",
@@ -49,7 +51,7 @@ export default function Notes(props) {
     const tagToUse = isCustomTag ? note.ecustomTag : note.etag;
     editNote(note.id, note.etitle, note.edescription, tagToUse, note.enoteText);
     props.showAlert("Note updated successfully!", "success");
-    refClose.current.click(); // Close the modal after updating
+    refClose.current.click();
   };
 
   const onChange = (event) => {
@@ -69,66 +71,49 @@ export default function Notes(props) {
     setNote({ ...note, etag: selectedTag });
   };
 
+  // Handle search form submission
+  const handleSearchSubmit = async (event) => {
+    event.preventDefault();
+    if (searchTerm.trim()) {
+      await searchNote(searchTerm); // Trigger search based on title
+    } else {
+      getNotes(); // Reload all notes if search is cleared
+    }
+  };
+
   return (
     <>
-      {/* Center: Search bar */}
-      <div
-        className="search-bar-container"
-        style={{ display: "flex", justifyContent: "center", margin: "50px 0" }}
-      >
-        <form className="d-flex" role="search" style={{ width: "50%" }}>
-          {" "}
-          {/* Adjust the form width to half */}
+      {/* Search bar */}
+      <div className="search-bar-container" style={{ display: "flex", justifyContent: "center", margin: "50px 0" }}>
+        <form className="d-flex" role="search" style={{ width: "50%" }} onSubmit={handleSearchSubmit}>
           <input
-            className={`form-control me-2 ${
-              props.mode === "dark" ? "dark-mode" : ""
-            }`}
+            className={`form-control me-2 ${props.mode === "dark" ? "dark-mode" : ""}`}
             type="search"
             placeholder="Search note"
             aria-label="Search"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
             style={{
               backgroundColor: props.mode === "dark" ? "#212529" : "white",
               color: props.mode === "dark" ? "white" : "black",
-              width: "100%", // Make the input take up the full width of the form
+              width: "100%",
             }}
           />
-          <button
-            className="cssbuttons-io-button"
-            type="submit"
-            style={{ marginLeft: "10px" }}
-          >
+          <button className="cssbuttons-io-button" type="submit" style={{ marginLeft: "10px" }}>
             Search
             <div className="icon">
-              <svg
-                height="24"
-                width="24"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 0h24v24H0z" fill="none"></path>
-                <path
-                  d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
-                  fill="currentColor"
-                ></path>
+                <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" fill="currentColor"></path>
               </svg>
             </div>
           </button>
         </form>
       </div>
-      <Addnote
-        mode={props.mode}
-        toggleMode={props.toggleMode}
-        showAlert={props.showAlert}
-      />
 
-      {/* Trigger button for opening the modal */}
-      <button
-        type="button"
-        ref={ref}
-        className="btn btn-primary d-none"
-        data-bs-toggle="modal"
-        data-bs-target="#editNoteModal"
-      >
+      <Addnote mode={props.mode} toggleMode={props.toggleMode} showAlert={props.showAlert} />
+
+      <button type="button" ref={ref} className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#editNoteModal">
         Launch Edit Note Modal
       </button>
 
@@ -144,10 +129,7 @@ export default function Notes(props) {
       />
 
       <div className="row my-3">
-        <h2
-          className="container my-3"
-          style={{ color: props.mode === "dark" ? "white" : "black" }}
-        >
+        <h2 className="container my-3" style={{ color: props.mode === "dark" ? "white" : "black" }}>
           Your Notes
         </h2>
         <div className="container" style={{ color: props.mode === "dark" ? "white" : "black" }}>
@@ -168,5 +150,3 @@ export default function Notes(props) {
     </>
   );
 }
-
-

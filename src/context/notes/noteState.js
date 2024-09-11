@@ -28,7 +28,7 @@ const NoteState = (props) => {
         "Content-Type": "application/json",
         "auth-token": localStorage.getItem("token"),
       },
-      body: JSON.stringify({ title, description, tag, noteText}),
+      body: JSON.stringify({ title, description, tag, noteText }),
     });
     const note = await response.json(); // Use the response to get the actual note data
     setNotes([...notes, note]); // Use spread operator to add the new note
@@ -68,8 +68,38 @@ const NoteState = (props) => {
     setNotes(updatedNotes);
   };
 
+  // Search Note
+  const searchNote = async (searchTerm) => {
+    try {
+      const response = await fetch(
+        `${host}/api/notes/searchnotes/${searchTerm}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": localStorage.getItem("token"),
+          },
+        }
+      );
+
+      const json = await response.json();
+
+      if (response.ok) {
+        setNotes(json); // The backend returns the notes array directly
+      } else {
+        console.error(json.message); // Log the error message
+        // Handle error display to the user (e.g., no notes found, empty search, etc.)
+      }
+    } catch (error) {
+      console.error("Error fetching notes:", error);
+      // Optionally show a user-friendly error message in the UI
+    }
+  };
+
   return (
-    <noteContext.Provider value={{ notes, addNote, deleteNote, editNote, getNotes }}>
+    <noteContext.Provider
+      value={{ notes, addNote, deleteNote, editNote, getNotes, searchNote }}
+    >
       {props.children}
     </noteContext.Provider>
   );
