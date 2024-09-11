@@ -5,7 +5,13 @@ import "./Addnote.css";
 export const Addnote = (props) => {
   const context = useContext(noteContext);
   const { addNote } = context;
-  const [note, setNote] = useState({ title: "", description: "", tag: "", noteText: "", customTag: "" });
+  const [note, setNote] = useState({
+    title: "",
+    description: "",
+    tag: "",
+    noteText: "",
+    customTag: "",
+  });
   const [isCustomTag, setIsCustomTag] = useState(false); // New state to track custom tag
 
   const handleAddNote = (event) => {
@@ -19,9 +25,15 @@ export const Addnote = (props) => {
 
     const tagToUse = isCustomTag ? note.customTag : note.tag; // Use custom tag if selected
     addNote(note.title, note.description, tagToUse, note.noteText);
-    
+
     // Optionally clear the note fields after submission
-    setNote({ title: "", description: "", tag: "", noteText: "", customTag: "" });
+    setNote({
+      title: "",
+      description: "",
+      tag: "",
+      noteText: "",
+      customTag: "",
+    });
     setIsCustomTag(false); // Reset custom tag state
   };
 
@@ -45,15 +57,30 @@ export const Addnote = (props) => {
   return (
     <div>
       <div
-        className="form-outer-container"
+        className="card-addnote"
         style={{
-          backgroundColor: props.mode === "dark" ? "#19191a" : "#f8f9fa",
+          backgroundColor: props.mode === "dark" ? "#19191a" : "#F8FBFE",
           color: props.mode === "dark" ? "white" : "black",
           border:
-            props.mode === "dark" ? "1px solid #f8f9fa" : "1px solid #343a40",
+            props.mode === "dark" ? "1px solid #343a40" : "1px solid #f8f9fa",
         }}
       >
-        <div className="form-container">
+        <div className="tools-addnote">
+          <div className="circles-container">
+            <div className="circle-addnote">
+              <span className="red box-addnote"></span>
+            </div>
+            <div className="circle-addnote">
+              <span className="yellow box-addnote"></span>
+            </div>
+            <div className="circle-addnote">
+              <span className="green box-addnote"></span>
+            </div>
+          </div>
+          <h2 className="heading-addnote">New Note</h2>
+        </div>
+
+        <div className="card__content">
           <form>
             {/* Title */}
             <div className="form-group">
@@ -132,11 +159,11 @@ export const Addnote = (props) => {
                 <option value="Important">Important</option>
                 <option value="Finance">Finance</option>
                 <option value="Others">Others</option>
-                <option value="Custom">Custom</option> {/* Custom option */}
+                <option value="Custom">Custom</option>
               </select>
             </div>
 
-            {/* Custom Tag Input (conditionally shown) */}
+            {/* Custom Tag Input */}
             {isCustomTag && (
               <div className="form-group">
                 <label
@@ -156,13 +183,15 @@ export const Addnote = (props) => {
                   onChange={onChange}
                   value={note.customTag}
                   style={{
-                    backgroundColor: props.mode === "dark" ? "#212529" : "white",
+                    backgroundColor:
+                      props.mode === "dark" ? "#212529" : "white",
                     color: props.mode === "dark" ? "white" : "black",
                   }}
                 />
               </div>
             )}
 
+            {/* Note Text */}
             <div className="form-group">
               <label
                 htmlFor="noteText"
@@ -189,10 +218,21 @@ export const Addnote = (props) => {
             {/* Submit Button */}
             <button
               type="submit"
-              className={`btn btn-${props.mode === "dark" ? "light" : "dark"}`}
+              className="button-addnote"
               onClick={handleAddNote}
             >
-              Add Note
+              ADD NOTE
+              <svg
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                className="icon-addnote"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z"
+                  fill-rule="evenodd"
+                ></path>
+              </svg>
             </button>
           </form>
         </div>
