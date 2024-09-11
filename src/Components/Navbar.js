@@ -59,6 +59,10 @@ export default function Navbar(props) {
                           ? "2px solid #fff"
                           : "2px solid #007bff" // Blue underline in light mode
                         : "none", // No underline for non-active links
+                    pointerEvents: !localStorage.getItem("token")
+                      ? "none"
+                      : "auto", // Disable clicking if no token
+                    opacity: !localStorage.getItem("token") ? 0.5 : 1, // Reduce opacity when disabled
                   }}
                 >
                   Home

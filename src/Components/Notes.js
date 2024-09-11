@@ -150,7 +150,7 @@ export default function Notes(props) {
         >
           Your Notes
         </h2>
-        <div className="container">
+        <div className="container" style={{ color: props.mode === "dark" ? "white" : "black" }}>
           {notes.length === 0 && "No notes to display"}
         </div>
         {notes.map((note) => {
@@ -168,3 +168,5 @@ export default function Notes(props) {
     </>
   );
 }
+
+
