@@ -40,7 +40,7 @@ function App() {
     <div>
       <NoteState>
       <Router>
-      <Navbar mode={mode} toggleMode={toggleMode} title="iNotebook" />
+      <Navbar mode={mode} toggleMode={toggleMode} title="iNotes" />
       <Alerts alert={alert} showAlert={showAlert} />
       <div className='container'>
       <Routes>
