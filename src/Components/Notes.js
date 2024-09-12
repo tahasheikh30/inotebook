@@ -11,7 +11,8 @@ export default function Notes(props) {
   const navigate = useNavigate();
   const { notes, getNotes, editNote } = context;
 
-  const [searchTerm, setSearchTerm] = useState(""); // State to track search term
+  const [searchTerm, setSearchTerm] = useState(""); // Track user input for search term
+  const [submittedSearchTerm, setSubmittedSearchTerm] = useState(""); // Track submitted search term
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -71,15 +72,16 @@ export default function Notes(props) {
     setNote({ ...note, etag: selectedTag });
   };
 
-  // Filter notes based on search term
-  const filteredNotes = notes.filter((note) =>
-    note.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
   // Handle search form submission
   const handleSearchSubmit = (event) => {
     event.preventDefault();
+    setSubmittedSearchTerm(searchTerm); // Store the submitted search term
   };
+
+  // Filter notes based on submitted search term
+  const filteredNotes = notes.filter((note) =>
+    note.title.toLowerCase().includes(submittedSearchTerm.toLowerCase())
+  );
 
   return (
     <>
@@ -92,7 +94,7 @@ export default function Notes(props) {
             placeholder="Search note"
             aria-label="Search"
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={(e) => setSearchTerm(e.target.value)} // Track input for search term
             style={{
               backgroundColor: props.mode === "dark" ? "#212529" : "white",
               color: props.mode === "dark" ? "white" : "black",
@@ -111,7 +113,10 @@ export default function Notes(props) {
         </form>
       </div>
 
-      <Addnote mode={props.mode} toggleMode={props.toggleMode} showAlert={props.showAlert} />
+      {/* Conditionally render Addnote */}
+      {!submittedSearchTerm && (
+        <Addnote mode={props.mode} toggleMode={props.toggleMode} showAlert={props.showAlert} />
+      )}
 
       <button type="button" ref={ref} className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#editNoteModal">
         Launch Edit Note Modal
@@ -128,7 +133,7 @@ export default function Notes(props) {
         refClose={refClose}
       />
 
-      <div className="row my-3">
+      <div className="row my-3" style={{ marginTop: submittedSearchTerm ? "50px" : "0" }}>
         <h2 className="container my-3" style={{ color: props.mode === "dark" ? "white" : "black" }}>
           Your Notes
         </h2>
