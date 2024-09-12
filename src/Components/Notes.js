@@ -9,7 +9,7 @@ import "./Note.css";
 export default function Notes(props) {
   const context = useContext(noteContext);
   const navigate = useNavigate();
-  const { notes, getNotes, editNote, searchNote } = context; // Destructure searchNote
+  const { notes, getNotes, editNote } = context;
 
   const [searchTerm, setSearchTerm] = useState(""); // State to track search term
 
@@ -71,14 +71,14 @@ export default function Notes(props) {
     setNote({ ...note, etag: selectedTag });
   };
 
+  // Filter notes based on search term
+  const filteredNotes = notes.filter((note) =>
+    note.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   // Handle search form submission
-  const handleSearchSubmit = async (event) => {
+  const handleSearchSubmit = (event) => {
     event.preventDefault();
-    if (searchTerm.trim()) {
-      await searchNote(searchTerm); // Trigger search based on title
-    } else {
-      getNotes(); // Reload all notes if search is cleared
-    }
   };
 
   return (
@@ -133,9 +133,9 @@ export default function Notes(props) {
           Your Notes
         </h2>
         <div className="container" style={{ color: props.mode === "dark" ? "white" : "black" }}>
-          {notes.length === 0 && "No notes to display"}
+          {filteredNotes.length === 0 ? "No notes match your search" : null}
         </div>
-        {notes.map((note) => {
+        {filteredNotes.map((note) => {
           return (
             <Noteitem
               key={note._id}
