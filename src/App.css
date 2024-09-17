@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 } */
+
+html, body {
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  height: 100%; /* Ensure they cover the full height */
+  width: 100%; /* Ensure they cover the full width */
+  overflow-x: hidden; /* Prevent horizontal scrollbars */
+  box-sizing: border-box; /* Ensures padding/margins do not affect width */
+}

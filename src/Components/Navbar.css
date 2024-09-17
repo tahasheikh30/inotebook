@@ -1,37 +1,4 @@
 /* Search Bar Styles */
-.search-bar-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px 0; /* Appropriate margins on all sides */
-  }
-  
-  .search-bar-container .form-control {
-    width: 50%; /* Set the width to 50% for a half-size search bar */
-    border-radius: 0.25rem;
-    padding: 0.5rem;
-  }
-  
-  .search-bar-container .form-control.dark-mode {
-    background-color: #212529;
-    color: white;
-  }
-  
-  .search-bar-container .form-control::placeholder {
-    color: rgb(197, 197, 197); /* Default placeholder color */
-  }
-  
-  .search-bar-container .form-control.dark-mode::placeholder {
-    color: rgb(204, 200, 200); /* Dark mode placeholder color */
-  }
-  
-  /* Responsive for mobile screens */
-  @media (max-width: 768px) {
-    .search-bar-container .form-control {
-      width: 100%; /* Full width for mobile devices */
-    }
-  }
-  
   .switch {
     display: block;
     --width-of-switch: 2.5em; /* Reduced width */

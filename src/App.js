@@ -5,6 +5,7 @@ import About from "./components/About";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Navbar from "./components/Navbar";
+import LandingPage from "./components/Landingpage";
 import React, { useState } from "react";
 import Alerts from "./components/Alerts";
 import NoteState from "./context/notes/noteState";
@@ -44,6 +45,7 @@ function App() {
       <Alerts alert={alert} showAlert={showAlert} />
       <div className='container'>
       <Routes>
+        <Route path="/" element={<LandingPage/>} />
         <Route exact path="/home" element={<Home mode={mode} toggleMode={toggleMode} showAlert={showAlert} />} />
         <Route exact path="/about" element={<About mode={mode} toggleMode={toggleMode} showAlert={showAlert}/>} />
         <Route exact path="/login" element={<Login mode={mode} toggleMode={toggleMode} showAlert={showAlert}/>} />
