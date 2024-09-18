@@ -15,7 +15,7 @@
 }
 
 .section1 {
-color: antiquewhite;
+color: rgb(37, 115, 134);
 }
 
 .flex-col {
@@ -24,7 +24,7 @@ color: antiquewhite;
 
 .topleft {
     width: 50%;
-    height: 50vh;
+    height: 45vh;
 }
 
 .topright {
@@ -64,6 +64,6 @@ color: antiquewhite;
     text-align: center;
 }
 img {
-    width: 500px;
+    width: 350px;
     height: auto; /* Maintains aspect ratio */
   }

@@ -15,7 +15,7 @@ function Landingpage() {
             <h1 className={`${styles["my-1"]}`}>
               Welcome to iNotes - Your personal notes app
             </h1>
-            <p>Take notes, organize them, and access them anywhere</p>
+            <p style={{fontWeight:"600"}}>Take notes, organize them, and access them anywhere</p>
           </div>
           <div className={styles.topright}>
             <img src={NotesImage} alt="" />

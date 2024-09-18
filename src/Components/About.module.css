@@ -1,0 +1,70 @@
+.wrapper{
+    font-family: "Poppins", system-ui;
+    text-align: center;
+    color: #fff;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.background {
+    background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('./About-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    min-height: 100vh;
+    z-index: -1;
+    margin-left: calc(-50vw + 50%);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.testimonial{
+    padding: 30px 100px;
+}
+
+article h1{
+    font-size: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+/* Commenting out or removing the following rule */
+article h1:after{
+    /* content: ""; 
+    height: 5px; 
+    width: 225px;
+    background-color: #fff;
+    display: block;
+    margin: auto; */
+}
+
+article img{
+    height: 200px;
+    width: 200px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    margin-top: 40px;
+}
+
+blockquote{
+    font-family: sans-serif;
+    font-size: 20px;
+    margin-top: 30px;
+}
+
+article h5{
+    text-transform: uppercase;
+    font-size: 30px;
+    margin-top: 30px;
+    letter-spacing: 1.5px;
+}
+
+article p{
+    font-size: 17px;
+}
