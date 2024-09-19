@@ -3,6 +3,7 @@ import "./Signup.css";
 import { useNavigate } from "react-router-dom";
 
 function Signup(props) {
+  const host = "https://inotes-backend-webservice.onrender.com";
   const [credentials, setCredentials] = useState({
     name: "",
     email: "",
@@ -17,20 +18,17 @@ function Signup(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch(
-        "http://localhost:5000/api/auth/createuser",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: credentials.name,
-            email: credentials.email,
-            password: credentials.password,
-          }),
-        }
-      );
+      const response = await fetch(`${host}/api/auth/createuser`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: credentials.name,
+          email: credentials.email,
+          password: credentials.password,
+        }),
+      });
 
       const json = await response.json();
       if (json.success) {
@@ -79,7 +77,7 @@ function Signup(props) {
             value={credentials.email}
             onChange={handleChange}
             title="Please enter a valid email address"
-            pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" 
+            pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
             required
           />
 

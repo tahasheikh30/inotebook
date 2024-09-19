@@ -3,6 +3,7 @@ import "./Login.css";
 import { useNavigate } from "react-router-dom";
 
 function Login(props) {
+  const host = "https://inotes-backend-webservice.onrender.com";
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -16,7 +17,7 @@ function Login(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch(`http://localhost:5000/api/auth/login`, {
+      const response = await fetch(`${host}/api/auth/login`, {  // Updated to deployed URL
         method: "POST",
         headers: {
           "Content-Type": "application/json",
