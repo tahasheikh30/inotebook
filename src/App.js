@@ -1,13 +1,13 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes  } from "react-router-dom";
-// import Home from "./components/Home";
-import About from "./components/About";
-import Login from "./components/Login";
-import Signup from "./components/Signup";
-import Navbar from "./components/Navbar";
-import LandingPage from "./components/Landingpage";
+import Home from "./Components/Home";
+import About from "./Components/About";
+import Login from "./Components/Login";
+import Signup from "./Components/Signup";
+import Navbar from "./Components/Navbar";
+import LandingPage from "./Components/Landingpage";
 import React, { useState } from "react";
-import Alerts from "./components/Alerts";
+import Alerts from "./Components/Alerts";
 import NoteState from "./context/notes/noteState";
 
 function App() {
@@ -46,7 +46,7 @@ function App() {
       <div className='container'>
       <Routes>
         <Route path="/" element={<LandingPage/>} />
-        {/* <Route exact path="/home" element={<Home mode={mode} toggleMode={toggleMode} showAlert={showAlert} />} /> */}
+        <Route exact path="/home" element={<Home mode={mode} toggleMode={toggleMode} showAlert={showAlert} />} />
         <Route exact path="/about" element={<About mode={mode} toggleMode={toggleMode} showAlert={showAlert}/>} />
         <Route exact path="/login" element={<Login mode={mode} toggleMode={toggleMode} showAlert={showAlert}/>} />
         <Route exact path="/signup" element={<Signup mode={mode} toggleMode={toggleMode} showAlert={showAlert}/>} />
